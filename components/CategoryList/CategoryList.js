@@ -74,7 +74,6 @@ const CategoryList = ({ categories }) => {
         WrapperComponent={CategoryListWrapper}
         renderItem={renderItem}
       />
-      ;
     </CategoryContainer>
   );
 };
