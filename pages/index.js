@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 
-import CategoryList from './components/CategoryList/CategoryList';
-import SearchSection from './components/SearchSection/SearchSection';
+import CategoryList from '../components/CategoryList/CategoryList';
+import SearchSection from '../components/SearchSection/SearchSection';
 
   const fetchCategories = async() => {
     const response = await axios.get('https://pokeapi.co/api/v2/type');

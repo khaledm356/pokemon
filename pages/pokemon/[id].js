@@ -2,7 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
 import axios from 'axios';
-import Pokemon from '../components/Pokemon/Pokemon';
+import Pokemon from '../../components/Pokemon/Pokemon';
 
 const PokemonPage = () => {
   const router = useRouter();
