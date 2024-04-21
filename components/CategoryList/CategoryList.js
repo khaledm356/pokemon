@@ -2,6 +2,8 @@ import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import { List } from "../List/List";
+import { getIdFromUrl } from '../../utils/helper';
+
 
 const CategoryContainer = styled.div`
   padding: 20px;
@@ -53,12 +55,12 @@ const CategoryListItem = styled.li`
   }
 `;
 
-const CategoryList = ({ categories, id }) => {
-  const keyExtractor = (category) => id(category);
-  const renderItem = (item) => {
+const CategoryList = ({ categories }) => {
+  const keyExtractor = (category) => getIdFromUrl(category?.url);
+  const renderItem = (category) => {
     return (
       <CategoryListItem>
-        <Link href={`/Categories/${id(item)}`}>{item.name}</Link>
+        <Link href={`/Categories/${getIdFromUrl(category?.url)}`}>{category.name}</Link>
       </CategoryListItem>
     );
   };

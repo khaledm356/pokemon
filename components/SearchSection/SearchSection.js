@@ -1,15 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import axios from "axios";
 import { useQuery } from "react-query";
-import Pokemon from "../Pokemon/Pokemon"; // Assuming Pokemon component exists
-
-const fetchPokemon = async (name) => {
-  const response = await axios.get(
-    `https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`
-  );
-  return response.data;
-};
+import Pokemon from "../Pokemon/Pokemon";
+import fetchPokemon from "../../services/pokemonService";
 
 const SearchContainer = styled.div`
   font-family: Arial, Helvetica, sans-serif;
@@ -76,14 +69,13 @@ const SearchSection = ({ searchQuery, setSearchQuery }) => {
   const [timeoutId, setTimeoutId] = useState(searchQuery);
   const [searchText, setSearchText] = useState("");
 
-  const {
-    data: pokemonData,
-    isLoading,
-    isError,
-    error,
-  } = useQuery(["pokemon", searchQuery], () => fetchPokemon(searchQuery), {
-    enabled: !!searchQuery.trim(),
-  });
+  const { data: pokemonData, isLoading, isError } = useQuery(
+    ["pokemon", searchQuery],
+    () => fetchPokemon(searchQuery),
+    {
+      enabled: !!searchQuery.trim(),
+    }
+  );
 
   const handleSearch = (e) => {
     if (!searchQuery.trim()) {

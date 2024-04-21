@@ -1,20 +1,16 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
-import axios from 'axios';
 import Pokemon from '../../components/Pokemon/Pokemon';
+import fetchPokemon from '../../services/pokemonService';
 
 const PokemonPage = () => {
   const router = useRouter();
   const { id } = router.query;
 
-  const { data: pokemon, isLoading, isError, error } = useQuery(['pokemon', id], fetchPokemon, {
+  const { data: pokemon, isLoading, isError, error } = useQuery(['pokemon', id], () => fetchPokemon(id), {
     enabled: !!id,
   });
-
-  function fetchPokemon() {
-    return axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`).then((response) => response.data);
-  }
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error: {error.message}</p>;

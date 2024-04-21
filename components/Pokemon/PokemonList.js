@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { List } from "../List/List";
 import Link from "next/link";
+import { getIdFromUrl } from '../../utils/helper';
 
 const PokemonContainer = styled.div`
   padding: 20px;
@@ -67,7 +68,7 @@ const PokemonList = ({ category }) => {
   const renderItem = (item) => {
     return (
       <PokemonListItem>
-        <Link href={`/pokemon/${id(item)}`}>{item.pokemon.name}</Link>
+        <Link href={`/pokemon/${getIdFromUrl(item.pokemon.url)}`}>{item.pokemon.name}</Link>
       </PokemonListItem>
     );
   };
@@ -80,7 +81,7 @@ const PokemonList = ({ category }) => {
       <List
         items={category?.pokemon}
         WrapperComponent={PokemonListWrapper}
-        keyExtractor={id}
+        keyExtractor={getIdFromUrl}
         renderItem={renderItem}
       />
     </PokemonContainer>

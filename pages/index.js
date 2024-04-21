@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
-import axios from 'axios';
-
 import CategoryList from '../components/CategoryList/CategoryList';
 import SearchSection from '../components/SearchSection/SearchSection';
-
-  const fetchCategories = async() => {
-    const response = await axios.get('https://pokeapi.co/api/v2/type');
-    return response.data.results;
-  }
+import { fetchCategories } from '../services/categoryService';
 
 const Home = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -17,13 +11,13 @@ const Home = () => {
   const id = (category) => {
     const url = new URL(category.url);
     const path = url.pathname.split("/");
-    return path[4]
-  }
+    return path[4];
+  };
 
   return (
     <div className='main'>
       <SearchSection searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-      <CategoryList categories={categories} id={id} />
+      <CategoryList categories={categories} />
     </div>
   );
 };
