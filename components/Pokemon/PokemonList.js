@@ -59,12 +59,7 @@ const PokemonListItem = styled.li`
 `;
 
 const PokemonList = ({ category }) => {
-  const id = (item) => {
-    const url = new URL(item.pokemon.url);
-    const path = url.pathname.split("/");
-    return path[4];
-  };
-
+  const keyExtractor = (item) => getIdFromUrl(item.pokemon.url);
   const renderItem = (item) => {
     return (
       <PokemonListItem>
@@ -81,7 +76,7 @@ const PokemonList = ({ category }) => {
       <List
         items={category?.pokemon}
         WrapperComponent={PokemonListWrapper}
-        keyExtractor={getIdFromUrl}
+        keyExtractor={keyExtractor}
         renderItem={renderItem}
       />
     </PokemonContainer>
