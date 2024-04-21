@@ -15,11 +15,9 @@ describe("PokemonList", () => {
   test("renders pokemon list", () => {
     render(<PokemonList category={mockCategory} />);
 
-    // Check if PokemonContainerHeader is rendered with the correct text
     const pokemonContainerHeader = screen.getByText(/Test Category/i);
     expect(pokemonContainerHeader).toBeInTheDocument();
 
-    // Check if each pokemon name is rendered as a link
     mockCategory.pokemon.forEach((item) => {
       const pokemonLink = screen.getByText(item.pokemon.name);
       expect(pokemonLink).toBeInTheDocument();

@@ -27,23 +27,20 @@ describe("PokemonPage", () => {
   test("renders pokemon details", () => {
     render(<PokemonPage pokemon={mockPokemon} />);
 
-    // // Check if pokemon name is rendered
-    // const pokemonName = screen.getByText(/pikachu/i);
-    // expect(pokemonName).toBeInTheDocument();
+      const pokemonName = screen.getByText((content, element) => {
+    return element.textContent.trim().toLowerCase() === 'pikachu';
+  });
+  expect(pokemonName).toBeInTheDocument();
 
-    // // Check if pokemon height and weight are rendered
-    // const pokemonHeight = screen.getByText(/height: 40/i);
-    // expect(pokemonHeight).toBeInTheDocument();
-    // const pokemonWeight = screen.getByText(/weight: 60/i);
-    // expect(pokemonWeight).toBeInTheDocument();
+  const pokemonHeight = screen.getByText(/40/i);
+  expect(pokemonHeight).toBeInTheDocument();
+  const pokemonWeight = screen.getByText(/60/i);
+  expect(pokemonWeight).toBeInTheDocument();
 
-    // // Check if abilities and types are rendered
-    // expect(screen.getByText(/abilities/i)).toBeInTheDocument();
-    // expect(screen.getByText(/static/i)).toBeInTheDocument();
-    // expect(screen.getByText(/categories/i)).toBeInTheDocument();
-    // expect(screen.getByText(/electric/i)).toBeInTheDocument();
+    expect(screen.getByText(/abilities/i)).toBeInTheDocument();
+    expect(screen.getByText(/static/i)).toBeInTheDocument();
+    expect(screen.getByText(/categories/i)).toBeInTheDocument();
+    expect(screen.getByText(/electric/i)).toBeInTheDocument();
 
-    // // Check if chart is rendered
-    // expect(screen.getByTestId("apexcharts-basic-bar")).toBeInTheDocument();
   });
 });

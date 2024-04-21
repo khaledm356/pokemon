@@ -12,7 +12,6 @@ describe("List component", () => {
       <List items={items} renderItem={renderItem} WrapperComponent={WrapperComponent} />
     );
 
-    // Check if all list items are rendered
     items.forEach((item) => {
       expect(screen.getByText(item)).toBeInTheDocument();
     });
