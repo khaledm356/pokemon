@@ -56,7 +56,6 @@ const CategoryListItem = styled.li`
 `;
 
 const CategoryList = ({ categories }) => {
-  const keyExtractor = (category) => getIdFromUrl(category?.url);
   const renderItem = (category) => {
     return (
       <CategoryListItem>
@@ -73,7 +72,6 @@ const CategoryList = ({ categories }) => {
       <List
         items={categories}
         WrapperComponent={CategoryListWrapper}
-        keyExtractor={keyExtractor}
         renderItem={renderItem}
       />
       ;

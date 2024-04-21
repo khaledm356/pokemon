@@ -1,10 +1,10 @@
 import React from "react";
 
-export const List = ({ items, renderItem, WrapperComponent, keyExtractor }) => {
+export const List = ({ items, renderItem, WrapperComponent }) => {
   return (
     <WrapperComponent>
-      {items?.map((item) => (
-        <React.Fragment key={keyExtractor(item)}>
+      {items?.map((item,index) => (
+        <React.Fragment key={index}>
           {renderItem(item)}
         </React.Fragment>
       ))}
